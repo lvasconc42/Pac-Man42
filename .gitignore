@@ -17,3 +17,6 @@ highscores.json
 .vscode/
 .idea/
 .DS_Store
+
+# Assigned maze generator (third-party, not ours): installed locally, not committed
+mazegenerator-*.whl

@@ -2,6 +2,7 @@ VENV    := .venv
 PYTHON  := $(VENV)/bin/python
 CONFIG  ?= config.json
 MAIN    := pac-man.py
+MAZEGEN ?= mazegenerator-2.1.0-py3-none-any.whl
 
 .PHONY: install run debug clean lint lint-strict test
 
@@ -14,9 +15,17 @@ $(VENV):
 
 install: $(VENV)
 	@if command -v uv >/dev/null 2>&1; then \
-		uv pip install --python $(PYTHON) -r requirements-dev.txt; \
+		PIP="uv pip install --python $(PYTHON)"; \
 	else \
-		$(PYTHON) -m pip install -r requirements-dev.txt; \
+		PIP="$(PYTHON) -m pip install"; \
+	fi; \
+	$$PIP -r requirements-dev.txt && \
+	if [ -f "$(MAZEGEN)" ]; then \
+		$$PIP "$(MAZEGEN)"; \
+	else \
+		echo "WARNING: $(MAZEGEN) not found. Place the assigned" \
+			"A-Maze-ing wheel at the repo root (or run" \
+			"'make install MAZEGEN=path/to/file.whl')."; \
 	fi
 
 run:

@@ -1,0 +1,4 @@
+# Pac-Man configuration (lines starting with # are comments)
+{
+    "lives": 3
+}

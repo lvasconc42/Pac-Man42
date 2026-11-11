@@ -1,0 +1,19 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+.mypy_cache/
+.pytest_cache/
+.venv/
+venv/
+
+# Packaging
+build/
+dist/
+
+# Runtime data
+highscores.json
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
